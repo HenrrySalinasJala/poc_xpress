@@ -13,3 +13,5 @@ hs_err_pid*
 
 target
 xpress.iml
+.idea
+lib/
