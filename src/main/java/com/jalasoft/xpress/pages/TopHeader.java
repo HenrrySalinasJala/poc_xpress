@@ -19,6 +19,9 @@ public class TopHeader extends BasePage{
     @FindBy(xpath = "(//div[@class='ng-binding basic-dropdown'])[last()]")
     private WebElement userNameText;
 
+    @FindBy(xpath = "//div[contains(@class,'module-selector-container')]")
+    private WebElement moduleSelector;
+
     public String getUserNameText() {
         String userName = "";
         try {
@@ -31,5 +34,9 @@ public class TopHeader extends BasePage{
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
         return userName;
+    }
+
+    public void clickOnModuleSelector() {
+        this.moduleSelector = moduleSelector;
     }
 }
