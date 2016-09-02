@@ -8,9 +8,6 @@ public final class Constants {
 
     public static final int LOAD_PAGE_TIME = 40;
 
-    public static final String DASHBOARD_URL = "https://www.pivotaltracker.com/dashboard";
-
-
     private Constants() {
     }
 }
