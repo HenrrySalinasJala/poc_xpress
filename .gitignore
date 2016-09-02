@@ -15,3 +15,5 @@ target
 xpress.iml
 .idea
 lib/
+logger.log
+

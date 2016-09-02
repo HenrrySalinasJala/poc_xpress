@@ -44,6 +44,6 @@ public class ProjectAssert {
     public void iExpectTheUserWasAdded() {
         final String userName = projectStepDef.getProjectUsersMap().get(ProjectSteps.PROJECT_USER_NAME).toString();
         assertTrue(projectStepDef.getEditProjectUsersForm().userIsAdded(userName));
-        
+        projectStepDef.getDashboard().getTopHeader().clickOnExpressOptionMenu();
     }
 }
