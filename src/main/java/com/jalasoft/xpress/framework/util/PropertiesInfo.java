@@ -12,7 +12,7 @@ public class PropertiesInfo {
 
     private static final Logger LOGGER = Logger.getLogger(PropertiesInfo.class.getSimpleName());
 
-    private static final String CONFIG_PROPERTIES = "xpress.properties";
+    private static final String CONFIG_PROPERTIES = "gradle.properties";
 
     private static final String PROXY_PORT = "proxyPort";
 
