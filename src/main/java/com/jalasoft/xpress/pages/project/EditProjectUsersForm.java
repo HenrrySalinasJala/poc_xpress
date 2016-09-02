@@ -29,24 +29,30 @@ public class EditProjectUsersForm extends BasePage {
     @FindBy(xpath = "//td[contains(@class,'available-users-list')]//input")
     private WebElement txtAvailableUser;
 
+    @FindBy(xpath = "//div[contains(@class,'dialog-footer')]//a[@class='dialog-ok-button' and contains(.,'Associate')]")
+    private WebElement associateAllBtn;
 
     public EditProjectUsersForm clickOnAddItemBtn() {
         clickWebElement(addUserBtn);
         return this;
     }
-
+    public EditProjectUsersForm clickOnAssociateAllBtn() {
+        clickWebElement(associateAllBtn);
+        return this;
+    }
     public EditProjectUsersForm setTxtAvailableUser(String userName) {
         setWebElement(txtAvailableUser,userName);
         return this;
     }
     public EditProjectUsersForm clickUserAvailableRow(String userName) {
-        WebElement rowUser=driver.findElement(By.xpath("//span[contains(.,'"+userName+"')]/.."));
+        final String xpath = String.format("//span[contains(.,'%s')]/..",userName);
+        WebElement rowUser=driver.findElement(By.xpath(xpath));
         clickWebElement(rowUser);
         return this;
     }
 
     public boolean userIsAdded(String userName,String projectName){
-        String xpath=String.format("//span[contains(.,'%s')]/ancestor::div[@class='list-container']/div[contains(.,'%s')]",userName,projectName);
+        final String xpath=String.format("//span[contains(.,'%s')]/ancestor::div[@class='list-container']/div[contains(.,'%s')]",userName,projectName);
         WebElement userInTableAdded=driver.findElement(By.xpath(xpath));
         return isElementPresent(userInTableAdded);
     }
