@@ -1,16 +1,15 @@
 package com.jalasoft.express.cucumber.stepdefinition.project;
 
+import com.jalasoft.express.cucumber.stepdefinition.login.LoginStepDef;
 import com.jalasoft.xpress.pages.AdminConsole;
 import com.jalasoft.xpress.pages.Dashboard;
 import com.jalasoft.xpress.pages.project.*;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 
-import java.util.Collections;
 import java.util.Map;
-import java.util.stream.IntStream;
+
+import static com.jalasoft.xpress.pages.project.ProjectSteps.*;
 
 
 /**
@@ -19,46 +18,68 @@ import java.util.stream.IntStream;
 public class ProjectStepDef {
 
     private ProjectManagementPPSA projectManagementPPSA;
-    private Map<ProjectSteps,Object> projectStepValues;
+
+    private Map<ProjectSteps, Object> projectStepValues;
+
+    private Map<ProjectSteps, Object> projectUsers;
+
+    private EditProjectUsersForm editProjectUsersForm;
+    private ProjectForm projectForm;
 
     private EditProjectForm editProjectForm;
+    private Dashboard dashboard;
 
-    public ProjectStepDef() {
-
-        this.projectManagementPPSA=new ProjectManagementPPSA();
+    public ProjectStepDef(LoginStepDef loginStepDef) {
+        this.dashboard = loginStepDef.getDashboard();
     }
 
     @Given("^I created? a new project$")
-    public void iCreateANewProject(Map<ProjectSteps,Object> values) {
+    public void iCreateANewProject(Map<ProjectSteps, Object> values) {
 
-        projectStepValues=values;
-        Dashboard dashboard=new Dashboard();
-        AdminConsole adminConsole=dashboard.getMenu().clickOnMenuAdminConsole();
-        ProjectManagementPPSA projectManagementPPSA=adminConsole.clickOnProjectManagementIcon();
-        ProjectForm projectForm=projectManagementPPSA.clickOnCreateProjectBtn();
+        projectStepValues = values;
+        AdminConsole adminConsole = dashboard.getMenu().clickOnMenuAdminConsole();
+        projectManagementPPSA = adminConsole.clickOnProjectManagementIcon();
+        projectForm = projectManagementPPSA.clickOnCreateProjectBtn();
         projectForm.strategyStepMap(values);
-
         projectForm.clickOnSaveBtn();
     }
 
+    @And("^I added the users? to the project$")
+    public void iAddedTheUserToTheProject(Map<ProjectSteps, Object> userValues) {
+        projectUsers=userValues;
 
-    public Map<ProjectSteps, Object> getProjectSteps() {
+        AdminConsole adminConsole = dashboard.getMenu().clickOnMenuAdminConsole();
+        projectManagementPPSA = adminConsole.clickOnProjectManagementIcon();
+        projectManagementPPSA.setTxtSearchProject(getProjectStepsMap().get(DISPLAY_NAME).toString());
+        editProjectForm = projectManagementPPSA.clickOnEditBtn(getProjectStepsMap().get(DISPLAY_NAME).toString());
+
+        editProjectUsersForm = editProjectForm.clickOnAddRemoveUserBtn();
+        editProjectUsersForm.setTxtAvailableUser(userValues.get(PROJECT_USER_NAME).toString())
+                .clickUserAvailableRow(userValues.get(PROJECT_USER_NAME).toString())
+                .clickOnAddItemBtn()
+                .clickOnAssociateAllBtn();
+
+    }
+
+    @And("^I added a user to the project$")
+    public void iAddedAUserToTheProject()   {
+
+
+    }
+
+    public EditProjectUsersForm getEditProjectUsersForm() {
+        return editProjectUsersForm;
+    }
+    public Map<ProjectSteps, Object> getProjectStepsMap() {
         return projectStepValues;
     }
 
-
-    public EditProjectForm getEditProjectForm() {
-        return editProjectForm;
+    public Dashboard getDashboard() {
+        return dashboard;
     }
 
-    @And("^I added the users? to the project$")
-    public void iAddedTheUserToTheProject(String userName) {
-        projectManagementPPSA.setTxtSearchProject(getProjectSteps().get(ProjectSteps.DISPLAY_NAME).toString());
-        editProjectForm=projectManagementPPSA.clickOnEditBtn(getProjectSteps().get(ProjectSteps.DISPLAY_NAME).toString());
-        EditProjectUsersForm editProjectUsersForm=editProjectForm.clickOnAddRemoveUserBtn();
-        editProjectUsersForm.setTxtAvailableUser(userName)
-                            .clickUserAvailableRow(userName)
-                            .clickOnAddItemBtn();
-
+    public Map<ProjectSteps, Object> getProjectUsersMap() {
+        return projectUsers;
     }
+
 }
