@@ -23,6 +23,10 @@ public class ProjectManagementPPSA extends BasePage {
     @FindBy(xpath = "//input[contains(@ng-model,'form.search')]")
     private WebElement txtSearchProject;
 
+
+    @FindBy(css = "button small ghost radius left user-admin-margin-left-button")
+    private WebElement deleteButton;
+
     public ProjectForm clickOnCreateProjectBtn(){
         createProjectBtn.click();
         return new ProjectForm();
@@ -35,6 +39,18 @@ public class ProjectManagementPPSA extends BasePage {
         clickWebElement(editBtn);
         return new EditProjectForm();
     }
+
+    public void clickOnDeleteCheckBox(String projectName){
+        WebElement delete = projectTableGrd.findElement(By.xpath("//tr[td//text()[contains(.,'"+projectName+"')]]/td/span/input"));
+        clickWebElement(delete);
+    }
+
+    public void clickOnDeleteProjects(){
+        clickWebElement(deleteButton);
+    }
+
+
+
 
     public void setTxtSearchProject(String projectName) {
         setWebElement(txtSearchProject,projectName);
