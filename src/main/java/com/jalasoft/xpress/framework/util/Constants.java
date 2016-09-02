@@ -8,6 +8,8 @@ public final class Constants {
 
     public static final int LOAD_PAGE_TIME = 40;
 
+    public static final int IMPLICIT_FAIL_WAIT_TIME = 8;
+
     private Constants() {
     }
 }

@@ -1,6 +1,5 @@
 package com.jalasoft.xpress.pages.project;
 
-import com.jalasoft.xpress.framework.util.IAutomationStep;
 import com.jalasoft.xpress.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +17,7 @@ import static com.jalasoft.xpress.pages.project.ProjectSteps.DISPLAY_NAME;
 public class EditProjectForm extends BasePage {
 
     @FindBy(xpath = "//a[contains(@ui-sref,'ppsa.adminConsole.adminConsoleMenu.projectManagement.users')]")
-    private WebElement addRemoveBtn;
+    private WebElement addRemoveUserBtn;
 
     @FindBy(xpath = "//input[contains(@ng-model,'project.displayName')]")
     private WebElement txtDisplayProjectName;
@@ -26,17 +25,17 @@ public class EditProjectForm extends BasePage {
     @FindBy(xpath="//input[contains(@ng-model,'project.customer')]")
     private WebElement txtProjectCustomerName;
 
-    public EditProjectUsersForm clickOnAddRemoveBtn() {
-        clickWebElement(addRemoveBtn);
+    public EditProjectUsersForm clickOnAddRemoveUserBtn() {
+        clickWebElement(addRemoveUserBtn);
         return new EditProjectUsersForm();
     }
 
     public String getTxtProjectCustomerName() {
-        return txtProjectCustomerName.getText();
+        return txtProjectCustomerName.getAttribute("value");
     }
 
     public String getTxtDisplayProjectName() {
-        return txtDisplayProjectName.getText();
+        return txtDisplayProjectName.getAttribute("value");
     }
 
     public Map<ProjectSteps, Object> getAssertionMap() {
