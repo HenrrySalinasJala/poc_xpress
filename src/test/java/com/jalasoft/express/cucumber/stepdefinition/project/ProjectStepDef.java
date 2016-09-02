@@ -2,11 +2,9 @@ package com.jalasoft.express.cucumber.stepdefinition.project;
 
 import com.jalasoft.xpress.pages.AdminConsole;
 import com.jalasoft.xpress.pages.Dashboard;
-import com.jalasoft.xpress.pages.project.EditProjectForm;
-import com.jalasoft.xpress.pages.project.ProjectForm;
-import com.jalasoft.xpress.pages.project.ProjectManagementPPSA;
-import com.jalasoft.xpress.pages.project.ProjectSteps;
+import com.jalasoft.xpress.pages.project.*;
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
@@ -20,12 +18,14 @@ import java.util.stream.IntStream;
  */
 public class ProjectStepDef {
 
+    private ProjectManagementPPSA projectManagementPPSA;
     private Map<ProjectSteps,Object> projectStepValues;
 
     private EditProjectForm editProjectForm;
 
     public ProjectStepDef() {
-        this.editProjectForm = new EditProjectForm();
+
+        this.projectManagementPPSA=new ProjectManagementPPSA();
     }
 
     @Given("^I created? a new project$")
@@ -49,5 +49,16 @@ public class ProjectStepDef {
 
     public EditProjectForm getEditProjectForm() {
         return editProjectForm;
+    }
+
+    @And("^I added the users? to the project$")
+    public void iAddedTheUserToTheProject(String userName) {
+        projectManagementPPSA.setTxtSearchProject(getProjectSteps().get(ProjectSteps.DISPLAY_NAME).toString());
+        editProjectForm=projectManagementPPSA.clickOnEditBtn(getProjectSteps().get(ProjectSteps.DISPLAY_NAME).toString());
+        EditProjectUsersForm editProjectUsersForm=editProjectForm.clickOnAddRemoveUserBtn();
+        editProjectUsersForm.setTxtAvailableUser(userName)
+                            .clickUserAvailableRow(userName)
+                            .clickOnAddItemBtn();
+
     }
 }

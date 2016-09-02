@@ -22,8 +22,8 @@ public class ProjectAssert {
     public void iValidateTheProjectFields()   {
         projectManagementPPSA.setTxtSearchProject(projectStepDef.getProjectSteps().get(ProjectSteps.DISPLAY_NAME).toString());
         projectManagementPPSA.clickOnEditBtn(projectStepDef.getProjectSteps().get(ProjectSteps.DISPLAY_NAME).toString());
-        String x=projectStepDef.getEditProjectForm().getAssertionMap().get(ProjectSteps.CUSTOMER_NAME).toString();
-        projectStepDef.getEditProjectForm().getAssertionMap().keySet().stream().forEach(step->
+
+        projectStepDef.getEditProjectForm().getAssertionMap().keySet().forEach(step->
             assertEquals(projectStepDef.getEditProjectForm().getAssertionMap().get(step).toString(),projectStepDef.getProjectSteps().get(step))
         );
     }

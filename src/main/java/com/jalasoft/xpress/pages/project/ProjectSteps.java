@@ -7,5 +7,6 @@ public enum ProjectSteps {
     PROJECT_NAME,
     DISPLAY_NAME,
     CUSTOMER_NAME,
-    MAPPER_FOLDER
+    MAPPER_FOLDER,
+    PROJECT_USER_NAME
 }
