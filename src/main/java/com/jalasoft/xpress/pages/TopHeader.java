@@ -1,10 +1,12 @@
 package com.jalasoft.xpress.pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.jalasoft.xpress.framework.util.CommonMethods.clickWebElement;
 import static com.jalasoft.xpress.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static com.jalasoft.xpress.framework.util.Constants.IMPLICIT_WAIT_TIME;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -19,6 +21,9 @@ public class TopHeader extends BasePage{
     @FindBy(xpath = "(//div[@class='ng-binding basic-dropdown'])[last()]")
     private WebElement userNameText;
 
+    @FindBy(xpath = "//div[contains(@class,'module-selector-container')]")
+    private WebElement moduleSelectorCbo;
+
     public String getUserNameText() {
         String userName = "";
         try {
@@ -32,4 +37,14 @@ public class TopHeader extends BasePage{
         }
         return userName;
     }
+    
+
+    public TopHeader clickOnExpressOptionMenu() {
+        final String xpath="//span[contains(.,'XPRESS')]";
+        clickWebElement(moduleSelectorCbo);
+        WebElement xpressOptionMenu=moduleSelectorCbo.findElement(By.xpath(xpath));
+        clickWebElement(xpressOptionMenu);
+        return this;
+    }
+
 }
