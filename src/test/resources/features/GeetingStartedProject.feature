@@ -10,7 +10,7 @@ Feature: Getting Started Project
     And stored as Project11
     Given I login with valid credentials
 
-  @CreateScenario @deleteProject
+#  @CreateScenario @deleteProject
 #  Scenario: Started a project from Scratch with a scenario existed
 #
 #    Given I click on [Project11.name] created
@@ -20,10 +20,10 @@ Feature: Getting Started Project
 
   Scenario: Started a project from Scratch with a empty scenery
 
-    Given I click on [project1.name] created
+    Given I click on [project11.name] created
     When I click on Start from Scratch
-    And I click on without Scenery
-    Then I expect
+    And I click on Start button
+#    Then I expect
 
 #  Scenario: Started a project from a project exits
 #
