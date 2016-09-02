@@ -43,14 +43,15 @@ public class Login extends BasePage {
 
     public static Dashboard loginAs(String userName, String password) {
         Dashboard dashboard = new Dashboard();
-//        if (!dashboard.getUserNameText().equalsIgnoreCase(dashboard.getUserName(userName))) {
-//            PivotalHome pivotalHome = new PivotalHome();
-//            Login login = pivotalHome.clickSingInLink();
-//            login.setUserNameTestField(userName);
-//            login.clickSignInButton();
-//            login.setPasswordTestField(password);
-//            return login.clickSignInButton();
-       // }
+        if (!userName.equalsIgnoreCase(dashboard.getTopHeader().getUserNameText())) {
+            ProsHome prosHome = new ProsHome();
+            Login login = prosHome.clickSingInLink();
+            login.clickButtonInternalUser();
+            login.setUserNameTestField(userName);
+            login.setPasswordTestField(password);
+            return login.clickSignInButton();
+
+        }
         return dashboard;
     }
 
