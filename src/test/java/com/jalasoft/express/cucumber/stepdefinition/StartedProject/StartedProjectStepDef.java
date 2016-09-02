@@ -42,7 +42,7 @@ public class StartedProjectStepDef {
 
     @And("^stored as (.*)$")
     public void storedAsProject(String key) {
-        valuesProject = addProjects(key, projectStepDef.getProjectSteps());
+        valuesProject = addProjects(key, projectStepDef.getProjectStepsMap());
         this.key = key;
     }
 
