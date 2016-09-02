@@ -29,12 +29,17 @@ public class EditProjectUsersForm extends BasePage {
     @FindBy(xpath = "//td[contains(@class,'available-users-list')]//input")
     private WebElement txtAvailableUser;
 
+    @FindBy(xpath = "//div[contains(@class,'dialog-footer')]//a[@class='dialog-ok-button' and contains(.,'Associate')]")
+    private WebElement associateAllBtn;
 
     public EditProjectUsersForm clickOnAddItemBtn() {
         clickWebElement(addUserBtn);
         return this;
     }
-
+    public EditProjectUsersForm clickOnAssociateAllBtn() {
+        clickWebElement(associateAllBtn);
+        return this;
+    }
     public EditProjectUsersForm setTxtAvailableUser(String userName) {
         setWebElement(txtAvailableUser,userName);
         return this;
