@@ -9,8 +9,9 @@ Feature: Create PPSA project
       | DISPLAY_NAME  | exampleProjectDisplayName10 |
       | CUSTOMER_NAME | exampleCustomerName10       |
       | MAPPER_FOLDER | /exampleProject10           |
-    And I added the user to the project
-      | PROJECT_USER_NAME | HenrryS |
-    Then i validate the project fields
+    And I added a user to the project
+    Then I validate the project fields
+    And I expect the user was added
+
 
 
