@@ -29,7 +29,7 @@ public class Menu extends BasePage {
 
     public AdminConsole clickOnMenuAdminConsole() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(10000);
             clickWebElement(menuAdminConsole);
         } catch (NoSuchElementException e) {
             LOGGER.error("The menu admin console element was not found",e);
