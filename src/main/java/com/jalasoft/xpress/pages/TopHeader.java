@@ -1,5 +1,6 @@
 package com.jalasoft.xpress.pages;
 
+import com.jalasoft.xpress.pages.project.ProjectManagementPPSA;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -45,6 +46,22 @@ public class TopHeader extends BasePage{
         WebElement xpressOptionMenu=moduleSelectorCbo.findElement(By.xpath(xpath));
         clickWebElement(xpressOptionMenu);
         return this;
+    }
+
+    public ProsHome clickOnLogOut() {
+        try {
+            final String xpath = "//span[contains(.,'Log out')]";
+            clickWebElement(userNameText);
+            WebElement LogOutOptionMenu = moduleSelectorCbo.findElement(By.xpath(xpath));
+            clickWebElement(LogOutOptionMenu);
+
+        } catch (NoSuchElementException e) {
+            LOGGER.warn("Button log out not found", e);
+
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
+        }
+        return new ProsHome();
     }
 
 }

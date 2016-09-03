@@ -1,4 +1,19 @@
-Feature: Create PPSA project
+private MainPage mainPage;
+
+@BeforeMethod(groups = {"Smoke"})
+public void setUp() {
+mainPage = LoginPage.loginAsPrimaryUser();
+}
+
+@Test(groups = {"Smoke"})
+public void testLogout() {
+TopHeader topHeader = mainPage.gotoTopHeader();
+topHeader.clickUserNameMenu();
+LoginPage loginPage = topHeader.clickLogoutOption();
+assertTrue(loginPage.isLoginButtonPresent());
+}
+
+Feature: Log out for xpres
   Background: login
     Given I login with valid credentials
   @DeleteProjects
@@ -12,6 +27,3 @@ Feature: Create PPSA project
       | PROJECT_USER_NAME | henrryS |
     Then I validate the project fields
     And I expect the user was added
-
-
-
