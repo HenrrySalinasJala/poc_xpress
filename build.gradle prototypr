@@ -1,0 +1,117 @@
+import net.masterthought.cucumber.ReportBuilder
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.jalasoft.xpress'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "http://repo.bodar.com"
+        }
+    }
+
+    dependencies {
+        classpath 'net.masterthought:cucumber-reporting:2.5.0'
+    }
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.0'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+
+    testCompile group: 'info.cukes', name: 'cucumber-java', version: '1.2.4'
+    testCompile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.4'
+    testCompile group: 'info.cukes', name: 'cucumber-picocontainer', version: '1.2.4'
+}
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+task downloadChromeDriverZip(type: Download) {
+    src 'http://chromedriver.storage.googleapis.com/2.9/chromedriver_win32.zip'
+    dest new File(buildDir, 'chromedriver.zip')
+    quiet false
+    overwrite true
+    onlyIfNewer true
+    compress false
+    println "Download Chrome driver: " + src + " to " + dest
+}
+task downloadAndUnzipChromeDriver(dependsOn: downloadChromeDriverZip, type: Copy) {
+    println "Unzip Chrome driver: " + downloadChromeDriverZip.dest
+    from zipTree(downloadChromeDriverZip.dest)
+    into buildDir
+}
+task useChrome(dependsOn: downloadAndUnzipChromeDriver) {
+    File chromeDriver = new File(buildDir, 'chromedriver.exe');
+    println "Use Chrome driver: $chromeDriver"
+
+}
+task something(){
+    dependsOn assemble, compileTestJava
+    if (project.hasProperty('browser')) {
+
+        switch (browser){
+            case 'ie': println "explorerererere"
+                break
+            case 'chrome': useChrome.execute()
+                break
+            default: println "defaultttttt"
+                break
+        }
+    }
+
+}
+
+task executeFeatures(dependsOn:something,type: Test) {
+    dependsOn assemble, compileTestJava
+    doLast {
+
+        File file = new File("cucumber-html-report")
+        file.delete()
+        try {
+            javaexec {
+                main = "cucumber.api.cli.Main"
+                classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+                args = ['--plugin', 'pretty',
+                        '--plugin', 'html:build/cucumber-html-report',
+                        '--plugin', 'json:build/cucumber.json',
+                        '--plugin', 'rerun:build/rerun.txt',
+                        '--glue', 'com.jalasoft.express.cucumber', 'src/test/resources/features']
+                jvmArgs = ["-Dcucumber.options=" + cucumberOptions]
+
+                jvmArgs = ["-Demail=" + email]
+                jvmArgs = ["-Dpassword=" + password]
+                jvmArgs = ["-Dbrowser=" + browser]
+
+            }
+        } catch (Exception e) {
+            println("unable to execute task, see the next detail: " + e)
+        }
+        sleep(5000)
+        generateReport("build/cucumber.json", "build/cucumber-html-report")
+    }
+}
+
+def generateReport(String pathCucumber, String pathReport) {
+    File reportOutputDirectory = new File(pathReport)
+    List<String> jsonReportFiles = new ArrayList<>()
+    jsonReportFiles.add(pathCucumber)
+    String buildProjectName = "poc-xpress"
+    net.masterthought.cucumber.Configuration configuration = new net.masterthought.cucumber.Configuration(reportOutputDirectory, buildProjectName)
+    ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, configuration)
+    reportBuilder.generateReports()
+}
+
