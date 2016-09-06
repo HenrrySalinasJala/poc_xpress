@@ -29,4 +29,9 @@ public class FromScenarios extends BasePage{
         setCheckBox(selectScenarioCheck, true);
         return this;
     }
+
+    public Dimensions clickStartBtn(){
+        clickWebElement(startBtn);
+        return new Dimensions();
+    }
 }

@@ -6,6 +6,7 @@ import com.jalasoft.xpress.pages.Dashboard;
 import com.jalasoft.xpress.pages.Mapper;
 import com.jalasoft.xpress.pages.Menu;
 import com.jalasoft.xpress.pages.Projects;
+import com.jalasoft.xpress.pages.StartedProjects.Dimensions;
 import com.jalasoft.xpress.pages.StartedProjects.FromExistingProject;
 import com.jalasoft.xpress.pages.StartedProjects.FromScenarios;
 import com.jalasoft.xpress.pages.StartedProjects.SetupDashboard;
@@ -33,6 +34,7 @@ public class StartedProjectStepDef {
     SetupDashboard setupDashboard;
     FromExistingProject fromExistingProject;
     FromScenarios fromScenarios;
+    Dimensions dimensions;
     Map<String, Map> valuesProject;
     String key;
 
@@ -63,11 +65,13 @@ public class StartedProjectStepDef {
 
     @And("^I click on Start button$")
     public void iClickOnWithoutScenery() {
-
+        dimensions = fromScenarios.clickStartBtn();
     }
 
     @And("^I select the scenario (.*)$")
     public void iSelectAScenario(String scenarioName) {
     fromScenarios.checkScenario(scenarioName);
     }
+
+    public Dimensions getDimensions(){return dimensions;}
 }
