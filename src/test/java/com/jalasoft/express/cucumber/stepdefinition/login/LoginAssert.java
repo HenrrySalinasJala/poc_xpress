@@ -2,6 +2,8 @@ package com.jalasoft.express.cucumber.stepdefinition.login;
 
 import com.jalasoft.xpress.framework.util.Environment;
 
+import com.jalasoft.xpress.pages.Login;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
 
@@ -26,5 +28,11 @@ public class LoginAssert {
     @Then("^The Login button is present$")
     public void theLoginButtonIsPresent() {
         Assert.assertTrue("The sing in button is not pressent",projectsStepdefs.getProsHome().isLoginButtonPresent());
+    }
+
+    @Then("^I expect the message say: (.*)$")
+    public void iExpectTheMessageSayVerifyThatYouHaveEnteredYourPROSNetworkCredentialsCorrectly(String message) {
+        Login login = new Login();
+        Assert.assertEquals(message, login.getMessageErrorLogin());
     }
 }

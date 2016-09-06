@@ -13,6 +13,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -21,13 +22,14 @@ import org.xml.sax.SAXException;
  * Created by Mijhail Villarroel on 9/6/2016.
  */
 public final class ReadFileXML {
+    private static final Logger LOGGER = Logger.getLogger(ReadFileXML.class.getName());
 
     private ReadFileXML() {
     }
 
     public static List<String> getListDimensions(String pathFileXML) {
         String attributeXML = "title";
-        String xPathExpression = "//Application//Dimension[@"+attributeXML+"]";
+        String xPathExpression = "//Application//Dimension[@" + attributeXML + "]";
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         List<String> listDimensions = new ArrayList<>();
 
@@ -40,14 +42,19 @@ public final class ReadFileXML {
                 listDimensions.add(nodos.item(i).getAttributes().getNamedItem(attributeXML).toString());
             }
         } catch (XPathExpressionException e) {
-            e.printStackTrace();
+            LOGGER.warn("The expression not found", e);
         } catch (SAXException e) {
-            e.printStackTrace();
+            LOGGER.warn("The expression not found", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("The file not found", e);
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+            LOGGER.warn("The expression not found", e);
         }
+        for (String values : listDimensions) System.out.println(values);
         return listDimensions;
+    }
+
+    public static void main(String[] args) {
+        getListDimensions("prueba.xml");
     }
 }

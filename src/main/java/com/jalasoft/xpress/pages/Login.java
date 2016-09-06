@@ -26,6 +26,10 @@ public class Login extends BasePage {
 
     @FindBy(css = ".login-input.sign-in-button")
     private WebElement signInBtn;
+
+    @FindBy(xpath = "//div[@ng-show='config.loginError']")
+    private WebElement textMessageError;
+
     private static ProsHome prosHome;
 
     public void clickButtonInternalUser() {
@@ -63,7 +67,7 @@ public class Login extends BasePage {
                 PROPERTIES_INFO.getPassword());
     }
 
-    public boolean isLoginButtonPresent() {
-        return prosHome.isLoginButtonPresent();
+    public String getMessageErrorLogin(){
+        return textMessageError.getText();
     }
 }
