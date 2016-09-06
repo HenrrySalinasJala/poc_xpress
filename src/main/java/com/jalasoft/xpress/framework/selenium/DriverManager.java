@@ -3,7 +3,7 @@ package com.jalasoft.xpress.framework.selenium;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.PropertyConfigurator;
-import com.jalasoft.xpress.framework.util.PropertiesInfo;
+import com.jalasoft.xpress.framework.util.Environment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -36,7 +36,7 @@ public class DriverManager {
     }
 
     private void initWebDriver() {
-        driver = FactoryDriver.getDriver(PropertiesInfo.getInstance().getBrowser()).initDriver();
+        driver = FactoryDriver.getDriver(Environment.getInstance().getBrowser()).initDriver();
         driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(LOAD_PAGE_TIME, TimeUnit.SECONDS);
         driver.manage().window().maximize();

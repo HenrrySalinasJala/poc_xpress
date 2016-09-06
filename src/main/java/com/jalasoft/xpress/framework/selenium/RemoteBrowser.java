@@ -3,7 +3,7 @@ package com.jalasoft.xpress.framework.selenium;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.jalasoft.xpress.framework.util.PropertiesInfo;
+import com.jalasoft.xpress.framework.util.Environment;
 import org.apache.log4j.Logger;
 
 import org.openqa.selenium.WebDriver;
@@ -16,7 +16,7 @@ public class RemoteBrowser implements IDriver {
 
     private static final Logger LOGGER = Logger.getLogger(RemoteBrowser.class.getSimpleName());
 
-    private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
+    private static final Environment PROPERTIES_INFO = Environment.getInstance();
 
     private static final String CAPABILITY_NAME = "name";
 

@@ -1,7 +1,6 @@
 package com.jalasoft.xpress.pages;
 
-import com.jalasoft.xpress.framework.util.CommonMethods;
-import com.jalasoft.xpress.framework.util.PropertiesInfo;
+import com.jalasoft.xpress.framework.util.Environment;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,7 +15,7 @@ public class ProsHome extends BasePage {
     private WebElement signInLink;
 
     public ProsHome() {
-        driver.get(PropertiesInfo.getInstance().getUrl());
+        driver.get(Environment.getInstance().getUrl());
     }
 
     public Login clickSingInLink() {
