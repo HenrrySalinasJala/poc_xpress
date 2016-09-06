@@ -1,3 +1,4 @@
+@smoke
 Feature: Testing for login Xpress
 
   Scenario: Login with valid credentials

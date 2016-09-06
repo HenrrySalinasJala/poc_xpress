@@ -53,7 +53,6 @@ public class ProjectStepDef {
     @And("^I added the users? to the project$")
     public void iAddedTheUserToTheProject(Map<ProjectSteps, Object> userValues) {
         projectUsers = userValues;
-        
         AdminConsole adminConsole = dashboard.getMenu().clickOnMenuAdminConsole();
         projectManagementPPSA = adminConsole.clickOnProjectManagementIcon();
         projectManagementPPSA.setTxtSearchProject(getProjectStepsMap().get(DISPLAY_NAME).toString());

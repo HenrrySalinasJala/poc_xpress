@@ -49,6 +49,7 @@ ext {
     ieUri = 'http://selenium-release.storage.googleapis.com/2.53/IEDriverServer_Win32_2.53.1.zip'
     marionetteUri='https://github.com/mozilla/geckodriver/releases/download/v0.9.0/geckodriver-v0.9.0-win64.zip'
 }
+
 task initDriverDir() {
     def driverDir = new File(driverPath)
     driverDir.mkdirs()
@@ -63,6 +64,7 @@ task downloadChromeDriverZip(type: Download) {
     onlyIfNewer true
     println "Download Chrome driver: " + src + " to " + dest
 }
+
 task unzipChromeDriver(type: Copy) {
     println "Unzip Chrome driver: " + downloadChromeDriverZip.dest
     from zipTree(downloadChromeDriverZip.dest)
@@ -104,6 +106,7 @@ task unzipMarionetteDriver(type: Copy) {
     into driverPath
 
 }
+
 task manageDriver() {
     dependsOn assemble, compileTestJava, initDriverDir
     doLast {
@@ -146,7 +149,6 @@ task executeFeatures(type: Test) {
                         '--plugin', 'rerun:build/rerun.txt',
                         '--glue', 'com.jalasoft.express.cucumber', 'src/test/resources/features']
                 jvmArgs = ["-Dcucumber.options=" + cucumberOptions]
-
                 jvmArgs = ["-Duser=" + user]
                 jvmArgs = ["-Dpassword=" + password]
                 jvmArgs = ["-Dbrowser=" + browser]
