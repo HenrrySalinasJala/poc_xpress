@@ -8,11 +8,11 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 
-public class PropertiesInfo {
+public class Environment {
 
-    private static final Logger LOGGER = Logger.getLogger(PropertiesInfo.class.getSimpleName());
+    private static final Logger LOGGER = Logger.getLogger(Environment.class.getSimpleName());
 
-    private static final String CONFIG_PROPERTIES = "xpress.properties";
+    private static final String CONFIG_PROPERTIES = "gradle.properties";
 
     private static final String PROXY_PORT = "proxyPort";
 
@@ -20,7 +20,7 @@ public class PropertiesInfo {
 
     private static final String REMOTE_TEST_NAME = "remoteTestName";
 
-    private static final String EMAIL = "email";
+    private static final String USER = "user";
 
     private static final String ACCESS_SECURITY = "password";
 
@@ -44,17 +44,17 @@ public class PropertiesInfo {
 
     private static final String REMOTE_TEST_HOST_URL="remoteTestHostUrl";
 
-    private static PropertiesInfo instance;
+    private static Environment instance;
 
     private Properties properties;
 
-    private PropertiesInfo() {
+    private Environment() {
         loadProperties();
     }
 
-    public static PropertiesInfo getInstance() {
+    public static Environment getInstance() {
         if (instance == null) {
-            instance = new PropertiesInfo();
+            instance = new Environment();
         }
         return instance;
     }
@@ -84,8 +84,8 @@ public class PropertiesInfo {
         return propertyValue;
     }
 
-    public String getEmail() {
-        return getProperty(EMAIL);
+    public String getUser() {
+        return getProperty(USER);
     }
 
     public String getPassword() {
