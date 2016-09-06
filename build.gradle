@@ -99,7 +99,7 @@ task manageDriver() {
                     break
                 case 'firefox': println "driver deprecated"
                     break
-                default: println "defaultttttt"
+                default: println "driver not supported."
                     break
             }
         }
