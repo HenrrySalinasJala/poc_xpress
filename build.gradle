@@ -99,7 +99,7 @@ task manageDriver() {
                     break
                 case 'firefox': println "driver deprecated"
                     break
-                default: println "defaultttttt"
+                default: println "driver not supported."
                     break
             }
         }
@@ -132,7 +132,7 @@ task executeFeatures(type: Test) {
         } catch (Exception e) {
             println("unable to execute task, see the next detail: " + e)
         }
-        timeToGenerateReport=5000
+        def timeToGenerateReport=5000
         sleep(timeToGenerateReport)
         generateReport("build/cucumber.json", "build/cucumber-html-report")
     }

@@ -4,10 +4,10 @@ Feature: Create PPSA project
   @DeleteProjects
   Scenario: Create a  project and associate user
     Given I create a new project
-      | PROJECT_NAME  | exampleProjectName160       |
-      | DISPLAY_NAME  | exampleProjectDisplayName160|
-      | CUSTOMER_NAME | exampleCustomerName160      |
-      | MAPPER_FOLDER | /exampleProject160          |
+      | PROJECT_NAME  | project        |
+      | DISPLAY_NAME  | ProjectDisplay |
+      | CUSTOMER_NAME | customer       |
+      | MAPPER_FOLDER | /folder        |
     And I added the user to the project
       | PROJECT_USER_NAME | henrryS |
     Then I validate the project fields
