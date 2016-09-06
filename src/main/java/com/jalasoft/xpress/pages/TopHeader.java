@@ -4,6 +4,7 @@ import com.jalasoft.xpress.pages.project.ProjectManagementPPSA;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -50,15 +51,21 @@ public class TopHeader extends BasePage{
 
     public ProsHome clickOnLogOut() {
         try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             final String xpath = "//span[contains(.,'Log out')]";
-            clickWebElement(userNameText);
+            userNameText.click();
             WebElement LogOutOptionMenu = moduleSelectorCbo.findElement(By.xpath(xpath));
             clickWebElement(LogOutOptionMenu);
 
         } catch (NoSuchElementException e) {
             LOGGER.warn("Button log out not found", e);
 
-        } finally {
+        }
+        catch (TimeoutException e) {
+            LOGGER.warn("Time out exception Button log out not found", e);
+
+        }
+        finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
         return new ProsHome();

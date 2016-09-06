@@ -15,13 +15,23 @@ import static com.jalasoft.xpress.pages.Login.loginAsPrimaryUser;
 public class LoginStepDef {
 
     private Dashboard dashboard;
+    private ProsHome prosHome;
 
     @When("^I login with valid credentials$")
     public void iLoginWithValidCredentials() {
         dashboard = loginAsPrimaryUser();
     }
 
+    @Given("^I log out for the application$")
+    public void iLogOutForTheApplication() {
+        prosHome = dashboard.getTopHeader().clickOnLogOut();
+    }
+
     public Dashboard getDashboard() {
         return dashboard;
+    }
+
+    public ProsHome getProsHome() {
+        return prosHome;
     }
 }

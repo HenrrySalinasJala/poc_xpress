@@ -28,6 +28,7 @@ public class Login extends BasePage {
 
     @FindBy(css = ".login-input.sign-in-button")
     private WebElement signInBtn;
+    private static ProsHome prosHome;
 
     public void clickButtonInternalUser() {
         clickWebElement(clickInternalUser);
@@ -44,7 +45,7 @@ public class Login extends BasePage {
     public static Dashboard loginAs(String userName, String password) {
         Dashboard dashboard = new Dashboard();
         if (!userName.equalsIgnoreCase(dashboard.getTopHeader().getUserNameText())) {
-            ProsHome prosHome = dashboard.getTopHeader().clickOnLogOut();
+            prosHome = dashboard.getTopHeader().clickOnLogOut();
             Login login = prosHome.clickSingInLink();
             login.clickButtonInternalUser();
             login.setUserNameTestField(userName);
@@ -62,5 +63,9 @@ public class Login extends BasePage {
     public static Dashboard loginAsPrimaryUser() {
         return loginAs(PROPERTIES_INFO.getEmail(),
                 PROPERTIES_INFO.getPassword());
+    }
+
+    public boolean isLoginButtonPresent() {
+        return prosHome.isLoginButtonPresent();
     }
 }

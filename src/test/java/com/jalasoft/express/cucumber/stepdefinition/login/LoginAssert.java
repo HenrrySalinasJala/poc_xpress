@@ -22,4 +22,9 @@ public class LoginAssert {
         String expectUserName = PROPERTIES_INFO.getEmail();
         Assert.assertEquals(expectUserName.toUpperCase(),projectsStepdefs.getDashboard().getTopHeader().getUserNameText().toUpperCase());
 }
+
+    @Then("^The Login button is present$")
+    public void theLoginButtonIsPresent() {
+        Assert.assertTrue("The sing in button is not pressent",projectsStepdefs.getProsHome().isLoginButtonPresent());
+    }
 }
