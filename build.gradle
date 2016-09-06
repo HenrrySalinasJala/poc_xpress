@@ -1,7 +1,9 @@
+import de.undercouch.gradle.tasks.download.Download
 import net.masterthought.cucumber.ReportBuilder
 
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'de.undercouch.download'
 
 group = 'com.jalasoft.xpress'
 version = '1.0-SNAPSHOT'
@@ -22,6 +24,7 @@ buildscript {
 
     dependencies {
         classpath 'net.masterthought:cucumber-reporting:2.5.0'
+        classpath "de.undercouch:gradle-download-task:3.1.1"
     }
 }
 
@@ -40,8 +43,72 @@ configurations {
     }
 }
 
+ext {
+    driverPath = './lib'
+    chromeUri = 'http://chromedriver.storage.googleapis.com/2.9/chromedriver_win32.zip'
+    ieUri = 'http://selenium-release.storage.googleapis.com/2.53/IEDriverServer_Win32_2.53.1.zip'
+}
+task initDriverDir() {
+    def driverDir = new File(driverPath)
+    driverDir.mkdirs()
+}
+
+task downloadChromeDriverZip(type: Download) {
+    src chromeUri
+    dest new File(driverPath, 'chromedriver.zip')
+    overwrite true
+    quiet true
+    overwrite true
+    onlyIfNewer true
+    println "Download Chrome driver: " + src + " to " + dest
+}
+task unzipChromeDriver(type: Copy) {
+    println "Unzip Chrome driver: " + downloadChromeDriverZip.dest
+    from zipTree(downloadChromeDriverZip.dest)
+    into driverPath
+
+}
+
+task downloadIEDriverZip(type: Download) {
+    src ieUri
+    dest new File(driverPath, 'ie.zip')
+    overwrite true
+    quiet true
+    overwrite true
+    onlyIfNewer true
+    println "Download IE driver: " + src + " to " + dest
+}
+
+task unzipIEDriver(type: Copy) {
+    println "Unzip IE driver: " + downloadIEDriverZip.dest
+    from zipTree(downloadIEDriverZip.dest)
+    into driverPath
+
+}
+task manageDriver() {
+    dependsOn assemble, compileTestJava, initDriverDir
+    doLast {
+        if (project.hasProperty('browser')) {
+
+            switch (browser) {
+                case 'ie': downloadIEDriverZip.execute()
+                    unzipIEDriver.execute()
+                    break
+                case 'chrome': downloadChromeDriverZip.execute()
+                    unzipChromeDriver.execute()
+                    break
+                case 'firefox': println "driver deprecated"
+                    break
+                default: println "defaultttttt"
+                    break
+            }
+        }
+    }
+
+}
+
 task executeFeatures(type: Test) {
-    dependsOn assemble, compileTestJava
+    dependsOn assemble, compileTestJava,manageDriver
     doLast {
 
         File file = new File("cucumber-html-report")
@@ -65,7 +132,8 @@ task executeFeatures(type: Test) {
         } catch (Exception e) {
             println("unable to execute task, see the next detail: " + e)
         }
-        sleep(5000)
+        timeToGenerateReport=5000
+        sleep(timeToGenerateReport)
         generateReport("build/cucumber.json", "build/cucumber-html-report")
     }
 }
@@ -79,4 +147,3 @@ def generateReport(String pathCucumber, String pathReport) {
     ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, configuration)
     reportBuilder.generateReports()
 }
-
