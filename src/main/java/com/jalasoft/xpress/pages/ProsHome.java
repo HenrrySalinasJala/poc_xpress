@@ -22,4 +22,8 @@ public class ProsHome extends BasePage {
         clickWebElement(signInLink);
         return new Login();
     }
+    public boolean isLoginButtonPresent() {
+       // isElementPresent(signInLink);
+        return isElementPresent(signInLink);
+    }
 }

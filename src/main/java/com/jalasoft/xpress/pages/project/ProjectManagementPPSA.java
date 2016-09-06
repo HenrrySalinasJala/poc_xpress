@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
+import static com.jalasoft.xpress.framework.util.CommonMethods.checkBox;
 import static com.jalasoft.xpress.framework.util.CommonMethods.clickWebElement;
 import static com.jalasoft.xpress.framework.util.CommonMethods.setWebElement;
 
@@ -23,6 +24,10 @@ public class ProjectManagementPPSA extends BasePage {
     @FindBy(xpath = "//input[contains(@ng-model,'form.search')]")
     private WebElement txtSearchProject;
 
+
+    @FindBy(css = ".button.small.ghost.radius.left.user-admin-margin-left-button")
+    private WebElement deleteButton;
+
     public ProjectForm clickOnCreateProjectBtn(){
         createProjectBtn.click();
         return new ProjectForm();
@@ -35,6 +40,19 @@ public class ProjectManagementPPSA extends BasePage {
         clickWebElement(editBtn);
         return new EditProjectForm();
     }
+
+    public void clickOnDeleteCheckBox(String projectName){
+        WebElement deleteCh = projectTableGrd.findElement(By.xpath("//tr[td//text()[contains(.,'"+projectName+"')]]/td/span"));
+        deleteCh.click();
+    }
+
+    public DeleteProjectAlert clickOnDeleteProjects(){
+        clickWebElement(deleteButton);
+        return new DeleteProjectAlert();
+    }
+
+
+
 
     public void setTxtSearchProject(String projectName) {
         setWebElement(txtSearchProject,projectName);

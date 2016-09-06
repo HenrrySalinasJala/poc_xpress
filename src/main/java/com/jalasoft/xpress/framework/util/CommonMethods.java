@@ -96,7 +96,7 @@ public final class CommonMethods {
      *
      * @param webElement
      */
-    private static void checkBox(WebElement webElement) {
+    public static void checkBox(WebElement webElement) {
         if (webElement.isSelected()) {
             webElement.click();
         }
