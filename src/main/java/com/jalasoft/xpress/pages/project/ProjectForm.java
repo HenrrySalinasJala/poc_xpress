@@ -62,11 +62,10 @@ public class ProjectForm extends BasePage {
 
     public void strategyStepMap(Map<ProjectSteps, Object> values) {
         Map<ProjectSteps, IAutomationStep> projectSteps = new EnumMap<>(ProjectSteps.class);
-        final String valueToAvoidDuplicate=String.valueOf(System.currentTimeMillis());
-        projectSteps.put(PROJECT_NAME, () -> setTxtprojectName(String.format("%s_%s",values.get(PROJECT_NAME),valueToAvoidDuplicate)));
-        projectSteps.put(DISPLAY_NAME, () -> setTxtDisplayProjectName(String.format("%s_%s",values.get(DISPLAY_NAME),valueToAvoidDuplicate)));
-        projectSteps.put(CUSTOMER_NAME, () -> setTxtProjectCustomerName(String.format("%s_%s",values.get(CUSTOMER_NAME),valueToAvoidDuplicate)));
-        projectSteps.put(MAPPER_FOLDER, () -> setTxtMappedFolderPath(String.format("%s_%s",values.get(MAPPER_FOLDER),valueToAvoidDuplicate)));
+        projectSteps.put(PROJECT_NAME, () -> setTxtprojectName(String.format("%s",values.get(PROJECT_NAME))));
+        projectSteps.put(DISPLAY_NAME, () -> setTxtDisplayProjectName(String.format("%s",values.get(DISPLAY_NAME))));
+        projectSteps.put(CUSTOMER_NAME, () -> setTxtProjectCustomerName(String.format("%s",values.get(CUSTOMER_NAME))));
+        projectSteps.put(MAPPER_FOLDER, () -> setTxtMappedFolderPath(String.format("%s",values.get(MAPPER_FOLDER))));
 
         for (ProjectSteps step:values.keySet()){
             projectSteps.get(step).executeStep();

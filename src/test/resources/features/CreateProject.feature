@@ -5,10 +5,10 @@ Feature: Create PPSA project
 
   Scenario: Create a  project and associate user
     Given I create a new project
-      | PROJECT_NAME  | project        |
-      | DISPLAY_NAME  | ProjectDisplay |
-      | CUSTOMER_NAME | customer       |
-      | MAPPER_FOLDER | /folder        |
+      | PROJECT_NAME  | projectExample  |
+      | DISPLAY_NAME  | displayExample  |
+      | CUSTOMER_NAME | customerExample  |
+      | MAPPER_FOLDER | /folderExample |
     And I added the user to the project
       | PROJECT_USER_NAME | henrryS |
     Then I validate the project fields
