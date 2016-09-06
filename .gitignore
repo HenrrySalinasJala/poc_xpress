@@ -15,5 +15,12 @@ target
 xpress.iml
 .idea
 lib/
+*.log
+=======
 logger.log
-
+settings.gradle
+.gradle/
+build/
+gradlew
+gradlew.bat
+gradle/

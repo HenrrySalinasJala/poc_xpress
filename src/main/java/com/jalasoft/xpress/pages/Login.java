@@ -1,9 +1,7 @@
 package com.jalasoft.xpress.pages;
 
-import com.jalasoft.xpress.framework.selenium.DriverManager;
-import com.jalasoft.xpress.framework.util.CommonMethods;
-import com.jalasoft.xpress.framework.util.PropertiesInfo;
-import org.openqa.selenium.By;
+import com.jalasoft.xpress.framework.util.Environment;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,7 +13,7 @@ import static com.jalasoft.xpress.framework.util.CommonMethods.clickWebElement;
  */
 public class Login extends BasePage {
 
-    private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
+    private static final Environment PROPERTIES_INFO = Environment.getInstance();
 
     @FindBy(xpath = "//*[@ng-click=\"loginType = 'internal'\"]")
     private WebElement clickInternalUser;
@@ -28,6 +26,11 @@ public class Login extends BasePage {
 
     @FindBy(css = ".login-input.sign-in-button")
     private WebElement signInBtn;
+
+    @FindBy(xpath = "//div[@ng-show='config.loginError']")
+    private WebElement textMessageError;
+
+    private static ProsHome prosHome;
 
     public void clickButtonInternalUser() {
         clickWebElement(clickInternalUser);
@@ -44,13 +47,12 @@ public class Login extends BasePage {
     public static Dashboard loginAs(String userName, String password) {
         Dashboard dashboard = new Dashboard();
         if (!userName.equalsIgnoreCase(dashboard.getTopHeader().getUserNameText())) {
-            ProsHome prosHome = new ProsHome();
+            prosHome = dashboard.getTopHeader().clickOnLogOut();
             Login login = prosHome.clickSingInLink();
             login.clickButtonInternalUser();
             login.setUserNameTestField(userName);
             login.setPasswordTestField(password);
             return login.clickSignInButton();
-
         }
         return dashboard;
     }
@@ -61,7 +63,11 @@ public class Login extends BasePage {
     }
 
     public static Dashboard loginAsPrimaryUser() {
-        return loginAs(PROPERTIES_INFO.getEmail(),
+        return loginAs(PROPERTIES_INFO.getUser(),
                 PROPERTIES_INFO.getPassword());
+    }
+
+    public String getMessageErrorLogin(){
+        return textMessageError.getText();
     }
 }

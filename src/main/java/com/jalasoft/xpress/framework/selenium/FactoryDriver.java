@@ -14,6 +14,8 @@ public final class FactoryDriver {
                 return new Chrome();
             case FIREFOX:
                 return new Firefox();
+            case IE:
+                return new InternetExplorer();
             case REMOTE:
                 return new RemoteBrowser();
             default:
