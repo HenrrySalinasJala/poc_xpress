@@ -1,11 +1,7 @@
 package com.jalasoft.xpress.framework.util;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,7 +22,7 @@ public final class CommonMethods {
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 
-    private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
+    private static final Environment PROPERTIES_INFO = Environment.getInstance();
 
     private CommonMethods() {
     }

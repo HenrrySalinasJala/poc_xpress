@@ -16,4 +16,9 @@ xpress.iml
 .idea
 lib/
 logger.log
-
+settings.gradle
+.gradle/
+build/
+gradlew
+gradlew.bat
+gradle/
