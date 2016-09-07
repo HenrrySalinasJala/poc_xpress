@@ -42,6 +42,12 @@ public class TopHeader extends BasePage{
     
 
     public TopHeader clickOnExpressOptionMenu() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            LOGGER.error("Interrupted !", e);
+            Thread.currentThread().interrupt();
+        }
         final String xpath="//span[contains(.,'XPRESS')]";
         clickWebElement(moduleSelectorCbo);
         WebElement xpressOptionMenu=moduleSelectorCbo.findElement(By.xpath(xpath));

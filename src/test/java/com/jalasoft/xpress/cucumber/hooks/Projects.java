@@ -19,9 +19,11 @@ import static org.junit.Assert.assertEquals;
 public class Projects {
 
     private final Map<ProjectSteps, Object> valuesProprojectStepDef;
+    private Dashboard dashboard;
 
     public Projects(ProjectStepDef projectStepDef) {
         valuesProprojectStepDef = projectStepDef.getProjectStepsMap();
+        dashboard = projectStepDef.getDashboard();
     }
 
     /**
@@ -29,14 +31,13 @@ public class Projects {
      */
     @After("@DeleteProjects")
     public void tearDown() {
-        Dashboard dashboard = new Dashboard();
         AdminConsole adminConsole = dashboard.getMenu().clickOnMenuAdminConsole();
         ProjectManagementPPSA projectManagementPPSA = adminConsole.clickOnProjectManagementIcon();
         String nameProject = String.valueOf(valuesProprojectStepDef.get(DISPLAY_NAME));
         projectManagementPPSA.setTxtSearchProject(nameProject);
         projectManagementPPSA.clickOnDeleteCheckBox(nameProject);
         DeleteProjectAlert deleteAlert = projectManagementPPSA.clickOnDeleteProjects();
-        deleteAlert.clickDeleteBtn();
+        projectManagementPPSA = deleteAlert.clickDeleteBtn();
         dashboard.getTopHeader().clickOnExpressOptionMenu();
     }
 }

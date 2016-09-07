@@ -25,4 +25,9 @@ public class Dimensions extends BasePage {
         Collections.sort(stringDimensionList);
         return stringDimensionList;
     }
+
+    public List<String> getStrings() {
+        List<String> listTest = Arrays.asList("Customer", "Date", "Price Guidance Level", "Price Guidance Validity", "Product", "Sales Org", "Transaction Segment");
+        return listTest;
+    }
 }

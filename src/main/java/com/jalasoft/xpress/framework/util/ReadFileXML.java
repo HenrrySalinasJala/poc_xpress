@@ -53,12 +53,6 @@ public final class ReadFileXML {
             LOGGER.warn("The expression not found", e);
         }
         Collections.sort(listDimensions);
-        for (String values : listDimensions) System.out.println(values);
         return listDimensions;
-    }
-
-    public static void main(String[] args) {
-
-        getListDimensions("prueba.xlm");
     }
 }
