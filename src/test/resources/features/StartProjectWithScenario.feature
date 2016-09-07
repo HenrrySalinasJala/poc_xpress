@@ -9,7 +9,7 @@ Feature: Getting Started Project
       | CUSTOMER_NAME | exampleCustomerName013       |
       | MAPPER_FOLDER | /exampleProject013           |
     And I added the user to the project
-      | PROJECT_USER_NAME | danielG |
+      | danielG |
     Then I validate the project fields
     And I expect the user was added
     And stored as Project013
