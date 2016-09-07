@@ -39,7 +39,8 @@ public final class ReadFileXML {
             XPath xpath = XPathFactory.newInstance().newXPath();
             NodeList nodos = (NodeList) xpath.evaluate(xPathExpression, documento, XPathConstants.NODESET);
             for (int i = 0; i < nodos.getLength(); i++) {
-                listDimensions.add(nodos.item(i).getAttributes().getNamedItem(attributeXML).toString());
+
+                listDimensions.add(nodos.item(i).getAttributes().getNamedItem(attributeXML).getTextContent());
             }
         } catch (XPathExpressionException e) {
             LOGGER.warn("The expression not found", e);
@@ -50,6 +51,11 @@ public final class ReadFileXML {
         } catch (ParserConfigurationException e) {
             LOGGER.warn("The expression not found", e);
         }
+        for (String values : listDimensions) System.out.println(values);
         return listDimensions;
+    }
+
+    public static void main(String[] args) {
+        getListDimensions("prueba.xml");
     }
 }
