@@ -16,7 +16,7 @@ Feature: Getting Started Project
   @DeleteProjects
   Scenario: Started a project from a project exits
 
-    Given I click on Project004.PROJECT_NAME created
+    Given I click on Project001.PROJECT_NAME created
     When I click on Start from Existing Project
     And I select the Automation1 project as template
     And I click on Start project
