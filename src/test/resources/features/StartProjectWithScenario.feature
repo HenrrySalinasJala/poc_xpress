@@ -4,10 +4,10 @@ Feature: Getting Started Project
   Background: I create project
     Given I login with valid credentials
     Given I create a new project
-      | PROJECT_NAME  | exampleProjectName013        |
-      | DISPLAY_NAME  | exampleProjectDisplayName013 |
-      | CUSTOMER_NAME | exampleCustomerName013       |
-      | MAPPER_FOLDER | /exampleProject013           |
+      | PROJECT_NAME  | exampleProjectName        |
+      | DISPLAY_NAME  | exampleProjectDisplayName |
+      | CUSTOMER_NAME | exampleCustomerName       |
+      | MAPPER_FOLDER | /exampleProject           |
     And I added the user to the project
       | PROJECT_USER_NAME | danielG |
     Then I validate the project fields

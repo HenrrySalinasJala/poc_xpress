@@ -78,7 +78,7 @@ public final class CommonMethods {
      */
     public static void setCheckBox(WebElement webElement, boolean enable) {
         if (!enable) {
-            checkBox(webElement);
+            webElement.click();
         }
     }
 
