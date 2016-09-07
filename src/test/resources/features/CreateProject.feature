@@ -1,8 +1,7 @@
-@smoke
 Feature: Create PPSA project
   Background: login
     Given I login with valid credentials
-  @DeleteProjects
+  @DeleteProjects @smoke
   Scenario: Create a  project and associate user
     Given I create a new project
       | PROJECT_NAME  | projectExample  |

@@ -1,4 +1,3 @@
-@smoke
 Feature: Testing for login Xpress
 
   Scenario: Login with valid credentials
@@ -6,6 +5,7 @@ Feature: Testing for login Xpress
     Given I login with valid credentials
     Then I expect the userName is displayed
 
+  @smoke
   Scenario: Login with invalid credentials
     Given I login with credentials
       | userName | pedroP |
