@@ -1,3 +1,4 @@
+@Regression
 Feature: Getting Started Project
 
   Background: I create project
@@ -6,13 +7,14 @@ Feature: Getting Started Project
       | PROJECT_NAME  | exampleProjectName001        |
       | DISPLAY_NAME  | exampleProjectDisplayName001 |
       | CUSTOMER_NAME | exampleCustomerName001       |
-      | MAPPER_FOLDER | /exampleProject001          |
+      | MAPPER_FOLDER | /exampleProject001           |
     And I added the user to the project
       | PROJECT_USER_NAME | danielG |
     Then I validate the project fields
     And I expect the user was added
     And stored as Project001
-  @DeleteProjects @Regression
+
+  @DeleteProjects
   Scenario: Started a project from a project exits
 
     Given I click on Project001.PROJECT_NAME created
