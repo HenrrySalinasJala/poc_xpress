@@ -1,6 +1,5 @@
 package com.jalasoft.xpress.pages;
 
-import com.jalasoft.xpress.pages.scenario.ScenarioLibrary;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +22,10 @@ public class Menu extends BasePage {
     @FindBy(xpath = "//a[contains(.,'SCENARIO LIBRARY')]")
     private WebElement menuScenarioLibrary;
 
+    @FindBy(xpath = "//ul[contains(@class,'menu-bar')]//a[contains(text(),'PROJECTS')]")
+    private WebElement menuProjects;
+
+
     public AdminConsole clickOnMenuAdminConsole() {
         try {
             Thread.sleep(10000);
@@ -37,12 +40,12 @@ public class Menu extends BasePage {
         } finally {
             wait.withTimeout(WAIT_TIME, SECONDS);
         }
-
-
         return new AdminConsole();
     }
-    public ScenarioLibrary clickOnMenuScenarioLibrary() {
-        clickWebElement(menuScenarioLibrary);
-        return new ScenarioLibrary();
+
+    public Projects clickMenuProjects(){
+        clickWebElement(menuProjects);
+        return new Projects();
+
     }
 }

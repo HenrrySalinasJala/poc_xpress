@@ -29,10 +29,8 @@ public class ProjectAssert {
     
     @Then("^I validate the project fields$")
     public void iValidateTheProjectFields() {
-        
         AdminConsole adminConsole = projectStepDef.getDashboard().getMenu().clickOnMenuAdminConsole();
         projectManagementPPSA = adminConsole.clickOnProjectManagementIcon();
-        
         projectManagementPPSA.setTxtSearchProject(projectStepDef.getProjectStepsMap().get(ProjectSteps.DISPLAY_NAME).toString());
         projectManagementPPSA.clickOnEditBtn(projectStepDef.getProjectStepsMap().get(ProjectSteps.DISPLAY_NAME).toString());
         editProjectForm.getAssertionMap().keySet().forEach(step ->

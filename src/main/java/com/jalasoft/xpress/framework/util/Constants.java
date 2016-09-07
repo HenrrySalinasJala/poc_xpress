@@ -10,9 +10,6 @@ public final class Constants {
 
     public static final int IMPLICIT_FAIL_WAIT_TIME = 8;
 
-    public static final String DASHBOARD_URL = "https://www.pivotaltracker.com/dashboard";
-
-
     private Constants() {
     }
 }

@@ -1,0 +1,13 @@
+language: java
+jdk:
+- oraclejdk8
+sudo: false
+script: gradle compileJava compileTestJava
+branches:
+  only:
+   - develop
+notifications:
+ email:
+ - Daniel.Gonzales@fundacion-jala.org
+ - Mijhail.Villarroel@fundacion-jala.org
+ - Henrry.Salinas@fundacion-jala.org
