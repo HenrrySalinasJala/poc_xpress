@@ -1,5 +1,7 @@
 package com.jalasoft.xpress.framework.util;
 
+import com.jalasoft.xpress.pages.project.ProjectSteps;
+
 import org.apache.log4j.Logger;
 
 import org.openqa.selenium.WebDriverException;
@@ -7,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Map;
 
 import static com.jalasoft.xpress.framework.selenium.DriverManager.getInstance;
 
@@ -57,6 +61,7 @@ public final class CommonMethods {
     public static void setWebElement(WebElement webElement, String text) {
         WEB_DRIVER_WAIT.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
+        WEB_DRIVER_WAIT.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(text);
     }
 

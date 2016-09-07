@@ -1,4 +1,4 @@
-@Regression
+@regression
 Feature: Getting Started Project
 
   Background: I create project
@@ -9,7 +9,7 @@ Feature: Getting Started Project
       | CUSTOMER_NAME | exampleCustomerName       |
       | MAPPER_FOLDER | /exampleProject           |
     And I added the user to the project
-      | PROJECT_USER_NAME | danielG |
+      | danielG |
     Then I validate the project fields
     And I expect the user was added
     And stored as Project013
