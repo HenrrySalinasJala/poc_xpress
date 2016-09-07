@@ -16,7 +16,8 @@ import cucumber.api.junit.Cucumber;
                 "junit:build/test-report.xml"},
         features = {"src/test/resources/"},
         glue = {"com.jalasoft.xpress.cucumber"},
-        snippets = SnippetType.CAMELCASE
+        snippets = SnippetType.CAMELCASE,
+        tags = {"@new_test"}
 )
 public class Runner {
 
