@@ -1,3 +1,4 @@
+@Regression
 Feature: Getting Started Project
 
   Background: I create project
@@ -13,7 +14,7 @@ Feature: Getting Started Project
     And I expect the user was added
     And stored as Project013
 
-  @DeleteProjects @Regression
+  @DeleteProjects
   Scenario: Started a project from Scratch with a scenario existed
 
     Given I click on Project013.PROJECT_NAME created
