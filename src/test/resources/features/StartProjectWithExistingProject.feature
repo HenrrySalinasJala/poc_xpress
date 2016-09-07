@@ -13,7 +13,6 @@ Feature: Getting Started Project
     Then I validate the project fields
     And I expect the user was added
     And stored as Project001
-
   @DeleteProjects
   Scenario: Started a project from a project exits
 
