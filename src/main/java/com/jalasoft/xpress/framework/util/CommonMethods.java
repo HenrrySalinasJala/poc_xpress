@@ -27,6 +27,10 @@ public final class CommonMethods {
     private CommonMethods() {
     }
 
+    public static void searchElements(WebElement webElement, String nameElement){
+        webElement.sendKeys(nameElement);
+    }
+
     /**
      * This Method return false o true if the element be present.
      *

@@ -24,6 +24,9 @@ public class Menu extends BasePage {
     @FindBy(xpath = "//ul[contains(@class,'menu-bar')]//a[contains(text(),'ADMIN CONSOLE')]")
     private WebElement menuAdminConsole;
 
+    @FindBy(xpath = "//ul[contains(@class,'menu-bar')]//a[contains(text(),'PROJECTS')]")
+    private WebElement menuProjects;
+
     public AdminConsole clickOnMenuAdminConsole() {
         try {
             Thread.sleep(10000);
@@ -38,8 +41,11 @@ public class Menu extends BasePage {
         } finally {
             wait.withTimeout(WAIT_TIME, SECONDS);
         }
-
-
         return new AdminConsole();
+    }
+
+    public Projects clickMenuProjects(){
+        clickWebElement(menuProjects);
+        return new Projects();
     }
 }

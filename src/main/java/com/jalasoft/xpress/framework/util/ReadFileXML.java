@@ -50,11 +50,6 @@ public final class ReadFileXML {
         } catch (ParserConfigurationException e) {
             LOGGER.warn("The expression not found", e);
         }
-        for (String values : listDimensions) System.out.println(values);
         return listDimensions;
-    }
-
-    public static void main(String[] args) {
-        getListDimensions("prueba.xml");
     }
 }
