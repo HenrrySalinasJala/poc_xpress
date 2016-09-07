@@ -30,7 +30,7 @@ buildscript {
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.0'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.1'
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
 
     testCompile group: 'info.cukes', name: 'cucumber-java', version: '1.2.4'
@@ -47,7 +47,9 @@ ext {
     driverPath = './lib'
     chromeUri = 'http://chromedriver.storage.googleapis.com/2.9/chromedriver_win32.zip'
     ieUri = 'http://selenium-release.storage.googleapis.com/2.53/IEDriverServer_Win32_2.53.1.zip'
+    marionetteUri='https://github.com/mozilla/geckodriver/releases/download/v0.9.0/geckodriver-v0.9.0-win64.zip'
 }
+
 task initDriverDir() {
     def driverDir = new File(driverPath)
     driverDir.mkdirs()
@@ -62,6 +64,7 @@ task downloadChromeDriverZip(type: Download) {
     onlyIfNewer true
     println "Download Chrome driver: " + src + " to " + dest
 }
+
 task unzipChromeDriver(type: Copy) {
     println "Unzip Chrome driver: " + downloadChromeDriverZip.dest
     from zipTree(downloadChromeDriverZip.dest)
@@ -85,19 +88,42 @@ task unzipIEDriver(type: Copy) {
     into driverPath
 
 }
+
+task downloadMarionetteDriverZip(type: Download) {
+    src marionetteUri
+    dest new File(driverPath, 'marionette.zip')
+    acceptAnyCertificate true
+    overwrite true
+    quiet true
+    overwrite true
+    onlyIfNewer true
+    println "Download Marionette driver: " + src + " to " + dest
+}
+
+task unzipMarionetteDriver(type: Copy) {
+    println "Unzip Marionette driver: " + downloadMarionetteDriverZip.dest
+    from zipTree(downloadMarionetteDriverZip.dest)
+    into driverPath
+
+}
+
 task manageDriver() {
     dependsOn assemble, compileTestJava, initDriverDir
     doLast {
         if (project.hasProperty('browser')) {
 
             switch (browser) {
-                case 'ie': downloadIEDriverZip.execute()
+                case 'ie':
+                    downloadIEDriverZip.execute()
                     unzipIEDriver.execute()
                     break
-                case 'chrome': downloadChromeDriverZip.execute()
+                case 'chrome':
+                    downloadChromeDriverZip.execute()
                     unzipChromeDriver.execute()
                     break
-                case 'firefox': println "driver deprecated"
+                case 'firefox':
+                    downloadMarionetteDriverZip.execute()
+                    unzipMarionetteDriver.execute()
                     break
                 default: println "driver not supported."
                     break
@@ -108,7 +134,7 @@ task manageDriver() {
 }
 
 task executeFeatures(type: Test) {
-    dependsOn assemble, compileTestJava,manageDriver
+    dependsOn assemble, compileTestJava, manageDriver
     doLast {
 
         File file = new File("cucumber-html-report")
@@ -123,7 +149,6 @@ task executeFeatures(type: Test) {
                         '--plugin', 'rerun:build/rerun.txt',
                         '--glue', 'com.jalasoft.express.cucumber', 'src/test/resources/features']
                 jvmArgs = ["-Dcucumber.options=" + cucumberOptions]
-
                 jvmArgs = ["-Duser=" + user]
                 jvmArgs = ["-Dpassword=" + password]
                 jvmArgs = ["-Dbrowser=" + browser]
@@ -132,7 +157,7 @@ task executeFeatures(type: Test) {
         } catch (Exception e) {
             println("unable to execute task, see the next detail: " + e)
         }
-        def timeToGenerateReport=5000
+        def timeToGenerateReport = 5000
         sleep(timeToGenerateReport)
         generateReport("build/cucumber.json", "build/cucumber-html-report")
     }

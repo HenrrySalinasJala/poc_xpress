@@ -20,27 +20,22 @@ public class RemoteBrowser implements IDriver {
 
     private static final String CAPABILITY_NAME = "name";
 
-    private static final String HTTP_PROXY_HOST = "http.proxyHost";
-
-    private static final String HTTP_PROXY_PORT = "http.proxyPort";
-
     /**
      * {@inheritDoc}
      */
     @Override
     public WebDriver initDriver() {
-        System.getProperties().put(HTTP_PROXY_HOST, PROPERTIES_INFO.getProxyHost());
-        System.getProperties().put(HTTP_PROXY_PORT, PROPERTIES_INFO.getProxyPort());
+
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(CapabilityType.BROWSER_NAME, PROPERTIES_INFO.getRemoteBrowser());
         caps.setCapability(CapabilityType.VERSION, PROPERTIES_INFO.getBrowserVersion());
         caps.setCapability(CapabilityType.PLATFORM, PROPERTIES_INFO.getPlatform());
         caps.setCapability(CAPABILITY_NAME, PROPERTIES_INFO.getRemoteTestName());
-        final String sauceUrl = String.format(PROPERTIES_INFO.getRemoteTestHostUrl(),
+        final String remoteTestHostUri = String.format(PROPERTIES_INFO.getRemoteTestHostUrl(),
                 PROPERTIES_INFO.getRemoteUser(), PROPERTIES_INFO.getRemoteAccessKey());
         URL url = null;
         try {
-            url = new URL(sauceUrl);
+            url = new URL(remoteTestHostUri);
         } catch (MalformedURLException e) {
             LOGGER.warn("The url is not correct" + e);
         }
