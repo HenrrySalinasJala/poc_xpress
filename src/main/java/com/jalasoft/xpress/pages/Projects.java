@@ -6,10 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.jalasoft.xpress.framework.util.CommonMethods.clickWebElement;
-import static com.jalasoft.xpress.framework.util.CommonMethods.searchElements;
-
-import static com.jalasoft.xpress.framework.util.CommonMethods.setCheckBox;
+import static com.jalasoft.xpress.framework.util.CommonMethods.*;
 import static com.jalasoft.xpress.framework.util.Constants.WAIT_TIME;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -23,8 +20,11 @@ public class Projects extends BasePage {
     @FindBy(css = ".generic-search-input.ng-pristine.ng-untouched.ng-valid")
     private WebElement searchProjectTextField;
 
-    @FindBy(xpath = "//label[contains(.,'See All Projects')]")
-    private WebElement allProjectsCheck;
+    @FindBy(xpath = "//span[@class='pros-checkbox']")
+    private WebElement checkAllProjectsLabel;
+
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private WebElement verifyCheckBoxAllProject;
 
     public SetupDashboard clickProjectLink(String projectName) {
         try{
@@ -47,7 +47,7 @@ public class Projects extends BasePage {
     }
 
     public Projects checkSeeAllProjects() {
-        setCheckBox(allProjectsCheck,allProjectsCheck.isSelected());
+        setCheckBox(checkAllProjectsLabel, verifyCheckBoxAllProject.isSelected());
         return this;
     }
 

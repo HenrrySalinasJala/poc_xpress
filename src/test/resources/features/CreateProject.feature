@@ -7,12 +7,14 @@ Feature: Create PPSA project
   @DeleteProjects
   Scenario: Create a  project and associate user
     Given I create a new project
-      | PROJECT_NAME  | projectExample  |
-      | DISPLAY_NAME  | displayExample  |
-      | CUSTOMER_NAME | customerExample |
-      | MAPPER_FOLDER | /folderExample  |
+      | PROJECT_NAME  | proj   |
+      | DISPLAY_NAME  | disp   |
+      | CUSTOMER_NAME | cust   |
+      | MAPPER_FOLDER | /folde |
     And I added the user to the project
-      | PROJECT_USER_NAME | henrryS |
+      | henrryS  |
+      | danielG  |
+      | mijhailV |
     Then I validate the project fields
     And I expect the user was added
 
