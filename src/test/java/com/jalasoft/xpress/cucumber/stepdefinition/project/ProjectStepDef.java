@@ -11,9 +11,11 @@ import com.jalasoft.xpress.pages.project.ProjectSteps;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import java.util.Map;
+
+import java.util.*;
 
 import static com.jalasoft.xpress.pages.project.ProjectSteps.DISPLAY_NAME;
+import static com.jalasoft.xpress.pages.project.ProjectSteps.PROJECT_NAME;
 import static com.jalasoft.xpress.pages.project.ProjectSteps.PROJECT_USER_NAME;
 
 /**
@@ -41,12 +43,19 @@ public class ProjectStepDef {
     
     @Given("^I created? a new project$")
     public void iCreateANewProject(Map<ProjectSteps, Object> values) {
-        
-        projectStepValues = values;
+        Calendar calendar = Calendar.getInstance();
+        String nameNew = values.get(PROJECT_NAME)+""+calendar.get(Calendar.HOUR)+""+calendar.get(Calendar.MINUTE)+""+calendar.get(Calendar.SECOND)+""+calendar.get(Calendar.MILLISECOND);
+        projectStepValues = new EnumMap<>(ProjectSteps.class);
+        values.entrySet().stream()
+                .filter(step -> step.getValue() != null)
+                .forEach(step -> projectStepValues.put(step.getKey(), step.getValue()));
+
+        projectStepValues.put(PROJECT_NAME,nameNew);
+        projectStepValues.put(DISPLAY_NAME,nameNew);
         AdminConsole adminConsole = dashboard.getMenu().clickOnMenuAdminConsole();
         projectManagementPPSA = adminConsole.clickOnProjectManagementIcon();
         projectForm = projectManagementPPSA.clickOnCreateProjectBtn();
-        projectForm.strategyStepMap(values);
+        projectForm.strategyStepMap(projectStepValues);
         projectForm.clickOnSaveBtn();
     }
     
