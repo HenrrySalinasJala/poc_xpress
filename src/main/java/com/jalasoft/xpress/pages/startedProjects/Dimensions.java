@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,12 +22,7 @@ public class Dimensions extends BasePage {
         for (WebElement myElem : dimensionsLocator) {
             stringDimensionList.add(myElem.getText());
         }
+        Collections.sort(stringDimensionList);
         return stringDimensionList;
-    }
-
-    public List<String> getStrings() {
-        List<String> listTest = Arrays.asList("Customer", "Date", "Price Guidance Level", "Price Guidance Validity", "Product", "Sales Org", "Transaction Segment");
-        return listTest;
-
     }
 }
