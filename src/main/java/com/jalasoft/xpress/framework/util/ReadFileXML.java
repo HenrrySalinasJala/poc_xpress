@@ -3,6 +3,7 @@ package com.jalasoft.xpress.framework.util;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,6 +19,8 @@ import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import static com.jalasoft.xpress.pages.project.ProjectSteps.PROJECT_NAME;
 
 /**
  * Created by Mijhail Villarroel on 9/6/2016.

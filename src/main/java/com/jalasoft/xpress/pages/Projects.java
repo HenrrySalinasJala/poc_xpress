@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import static com.jalasoft.xpress.framework.util.CommonMethods.clickWebElement;
 import static com.jalasoft.xpress.framework.util.CommonMethods.searchElements;
 
+import static com.jalasoft.xpress.framework.util.CommonMethods.setCheckBox;
 import static com.jalasoft.xpress.framework.util.Constants.WAIT_TIME;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -46,7 +47,7 @@ public class Projects extends BasePage {
     }
 
     public Projects checkSeeAllProjects() {
-        clickWebElement(allProjectsCheck);
+        setCheckBox(allProjectsCheck,allProjectsCheck.isSelected());
         return this;
     }
 

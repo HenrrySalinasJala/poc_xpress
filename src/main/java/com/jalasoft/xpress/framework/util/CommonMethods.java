@@ -77,9 +77,7 @@ public final class CommonMethods {
      * @param enable
      */
     public static void setCheckBox(WebElement webElement, boolean enable) {
-        if (enable) {
-            unCheckBox(webElement);
-        } else {
+        if (!enable) {
             checkBox(webElement);
         }
     }
