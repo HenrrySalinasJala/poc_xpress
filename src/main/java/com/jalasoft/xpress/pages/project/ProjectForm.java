@@ -5,12 +5,18 @@ import com.jalasoft.xpress.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Calendar;
 import java.util.EnumMap;
 import java.util.Map;
 
 import static com.jalasoft.xpress.framework.util.CommonMethods.clickWebElement;
 import static com.jalasoft.xpress.framework.util.CommonMethods.setWebElement;
 import static com.jalasoft.xpress.pages.project.ProjectSteps.*;
+import static java.util.Calendar.HOUR;
+import static java.util.Calendar.MILLISECOND;
+import static java.util.Calendar.MINUTE;
+import static java.util.Calendar.SECOND;
+import static java.util.Calendar.getInstance;
 
 /**
  * Created by henrry salinas on 9/1/2016.
@@ -70,5 +76,18 @@ public class ProjectForm extends BasePage {
         for (ProjectSteps step:values.keySet()){
             projectSteps.get(step).executeStep();
         }
+    }
+    
+    public Map<ProjectSteps, Object> toModifiableMap(Map<ProjectSteps, Object> values) {
+        final Calendar calendar = getInstance();
+        final String newName = String.format("%s%d%d%d%d",values.get(PROJECT_NAME),calendar.get(HOUR),calendar.get(MINUTE),calendar.get(SECOND),calendar.get(MILLISECOND));
+    
+        Map<ProjectSteps, Object> modifiableStepMap = new EnumMap<>(ProjectSteps.class);
+        values.entrySet().stream()
+                .filter(step -> step.getValue() != null)
+                .forEach(step -> modifiableStepMap.put(step.getKey(), step.getValue()));
+        modifiableStepMap.put(PROJECT_NAME,newName);
+        modifiableStepMap.put(DISPLAY_NAME,newName);
+        return modifiableStepMap;
     }
 }
