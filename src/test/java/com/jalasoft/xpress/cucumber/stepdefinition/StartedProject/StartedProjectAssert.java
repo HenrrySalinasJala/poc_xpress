@@ -1,7 +1,6 @@
-package com.jalasoft.express.cucumber.stepdefinition.StartedProject;
+package com.jalasoft.xpress.cucumber.stepdefinition.StartedProject;
 
-import com.jalasoft.xpress.pages.StartedProjects.Dimensions;
-import cucumber.api.PendingException;
+import com.jalasoft.xpress.pages.startedProjects.Dimensions;
 import cucumber.api.java.en.Then;
 
 import static com.jalasoft.xpress.framework.util.ReadFileXML.getListDimensions;

@@ -1,4 +1,6 @@
+@smoke
 Feature: Log out for xpress
+
   Background: login
     Given I login with valid credentials
 

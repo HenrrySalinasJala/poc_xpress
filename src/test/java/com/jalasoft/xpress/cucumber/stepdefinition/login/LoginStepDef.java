@@ -1,10 +1,7 @@
-package com.jalasoft.express.cucumber.stepdefinition.login;
+package com.jalasoft.xpress.cucumber.stepdefinition.login;
 
 import com.jalasoft.xpress.pages.Dashboard;
-import com.jalasoft.xpress.pages.Login;
 import com.jalasoft.xpress.pages.ProsHome;
-import com.sun.javafx.collections.MappingChange;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 

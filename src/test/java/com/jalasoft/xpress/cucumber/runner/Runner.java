@@ -1,4 +1,4 @@
-package com.jalasoft.express.cucumber.runner;
+package com.jalasoft.xpress.cucumber.runner;
 
 import org.junit.runner.RunWith;
 
@@ -11,16 +11,15 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
         monochrome = true,
         format = {"pretty",
-                "html:target/test-report",
-                "json:target/test-report.json",
-                "junit:target/test-report.xml"},
+                "html:build/cucumber-html-report",
+                "json:build/cucumber.json",
+                "junit:build/test-report.xml"},
         features = {"src/test/resources/"},
         glue = {"com.jalasoft.xpress.cucumber"},
-        snippets = SnippetType.CAMELCASE
+        snippets = SnippetType.CAMELCASE,
+        tags = {"@new_test"}
 )
 public class Runner {
 
 }
-
-
 
