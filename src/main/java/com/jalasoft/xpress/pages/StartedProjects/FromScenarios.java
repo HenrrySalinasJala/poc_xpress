@@ -19,11 +19,6 @@ public class FromScenarios extends BasePage{
     @FindBy(xpath = "//table[contains(@class,'scroll')]")
     private WebElement tableScenarios;
 
-    public ProjectWithoutScenarios startScratchProject() {
-        clickWebElement(startBtn);
-        return new ProjectWithoutScenarios();
-    }
-
     public FromScenarios checkScenario(String scenarioName) {
         WebElement selectScenarioCheck = driver.findElement(By.xpath("//tr[td//text()[contains(.,'" + scenarioName + "')]]/td/span"));
         setCheckBox(selectScenarioCheck, true);

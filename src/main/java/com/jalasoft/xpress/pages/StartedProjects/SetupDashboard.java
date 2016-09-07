@@ -34,8 +34,8 @@ public class SetupDashboard extends BasePage {
             Thread.sleep(3000);
         clickWebElement(startScratchProjectBtn);
         } catch (NoSuchElementException e) {
-            LOGGER.error("The menu admin console element was not found",e);
-            throw new NoSuchElementException("The menu admin console element was not found");
+            LOGGER.error("The element was not found",e);
+            throw new NoSuchElementException("The element was not found");
 
         } catch (InterruptedException e) {
             LOGGER.error("Interrupted !", e);
@@ -45,4 +45,22 @@ public class SetupDashboard extends BasePage {
         }
         return new FromScenarios();
     }
-}
+
+    public FromExistingProject startExistingProject() {
+        try {
+            Thread.sleep(3000);
+            clickWebElement(startExistingProjectBtn);
+        } catch (NoSuchElementException e) {
+            LOGGER.error("The element was not found",e);
+            throw new NoSuchElementException("The element was not found");
+
+        } catch (InterruptedException e) {
+            LOGGER.error("Interrupted !", e);
+            Thread.currentThread().interrupt();
+        } finally {
+            wait.withTimeout(WAIT_TIME, SECONDS);
+        }
+        return new FromExistingProject();
+    }
+
+    }
