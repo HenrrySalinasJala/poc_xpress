@@ -73,7 +73,6 @@ public class TopHeader extends BasePage{
 
         } catch (NoSuchElementException e) {
             LOGGER.warn(BUTTON_LOG_OUT_NOT_FOUND, e);
-            throw new NoSuchElementException(BUTTON_LOG_OUT_NOT_FOUND,e);
         }
         catch (TimeoutException e) {
             LOGGER.warn(TIME_OUT_BUTTON_LOG_OUT_NOT_FOUND, e);
