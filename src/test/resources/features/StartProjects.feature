@@ -1,4 +1,4 @@
-@Regression
+@regression
 Feature: Getting Started Project
 
   Background: I create project
