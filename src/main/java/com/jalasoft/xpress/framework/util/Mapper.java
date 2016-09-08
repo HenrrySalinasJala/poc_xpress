@@ -1,4 +1,4 @@
-package com.jalasoft.xpress.pages;
+package com.jalasoft.xpress.framework.util;
 
 import com.jalasoft.xpress.pages.project.ProjectSteps;
 

@@ -4,9 +4,7 @@ import com.jalasoft.xpress.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 
-import static com.jalasoft.xpress.framework.util.CommonMethods.checkBox;
 import static com.jalasoft.xpress.framework.util.CommonMethods.clickWebElement;
 import static com.jalasoft.xpress.framework.util.CommonMethods.setWebElement;
 

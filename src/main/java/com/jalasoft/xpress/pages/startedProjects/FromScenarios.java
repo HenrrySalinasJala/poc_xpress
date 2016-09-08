@@ -1,4 +1,4 @@
-package com.jalasoft.xpress.pages.startedProjects;
+package com.jalasoft.xpress.pages.startedprojects;
 
 import com.jalasoft.xpress.pages.BasePage;
 import org.openqa.selenium.By;
