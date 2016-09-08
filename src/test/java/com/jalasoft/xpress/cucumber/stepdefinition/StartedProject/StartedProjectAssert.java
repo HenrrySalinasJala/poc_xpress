@@ -1,6 +1,6 @@
-package com.jalasoft.xpress.cucumber.stepdefinition.StartedProject;
+package com.jalasoft.xpress.cucumber.stepdefinition.startedproject;
 
-import com.jalasoft.xpress.pages.startedProjects.Dimensions;
+import com.jalasoft.xpress.pages.startedprojects.Dimensions;
 import cucumber.api.java.en.Then;
 
 import static com.jalasoft.xpress.framework.util.ReadFileXML.getListDimensions;
@@ -24,7 +24,7 @@ public class StartedProjectAssert {
     @Then("^I expect the next dimensions for the selected scenario$")
     public void iExpectTheNextDimensionsForTheSelectedScenario() {
         dimensions = startedProjectStepDef.getDimensions();
-        assertEquals(dimensions.dimensionsList(),getListDimensions("prueba.xml"));
+        assertEquals(dimensions.dimensionsList(),getListDimensions("exampleSCF.xml"));
     }
 
     @Then("^I expect any scenario$")

@@ -1,4 +1,4 @@
-package com.jalasoft.xpress.pages.startedProjects;
+package com.jalasoft.xpress.pages.startedprojects;
 
 import com.jalasoft.xpress.pages.BasePage;
 import org.openqa.selenium.WebElement;
@@ -27,7 +27,6 @@ public class Dimensions extends BasePage {
     }
 
     public List<String> getStrings() {
-        List<String> listTest = Arrays.asList("Customer", "Date", "Price Guidance Level", "Price Guidance Validity", "Product", "Sales Org", "Transaction Segment");
-        return listTest;
+        return Arrays.asList("Customer", "Date", "Price Guidance Level", "Price Guidance Validity", "Product", "Sales Org", "Transaction Segment");
     }
 }

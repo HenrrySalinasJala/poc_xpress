@@ -7,10 +7,10 @@ Feature: Create PPSA project
   @DeleteProjects
   Scenario: Create a  project and associate user
     Given I create a new project
-      | PROJECT_NAME  | proj   |
-      | DISPLAY_NAME  | disp   |
-      | CUSTOMER_NAME | cust   |
-      | MAPPER_FOLDER | /folde |
+      | PROJECT_NAME  | ProjectName            |
+      | DISPLAY_NAME  | ProjectDisplayName     |
+      | CUSTOMER_NAME | exampleCustomerName    |
+      | MAPPER_FOLDER | /exampleProject        |
     And I added the user to the project
       | henrryS  |
       | danielG  |
