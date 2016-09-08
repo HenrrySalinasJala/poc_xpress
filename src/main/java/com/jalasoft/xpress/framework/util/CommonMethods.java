@@ -25,9 +25,7 @@ public final class CommonMethods {
     private static final WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
-
-    private static final Environment PROPERTIES_INFO = Environment.getInstance();
-
+    
     private CommonMethods() {
     }
 
