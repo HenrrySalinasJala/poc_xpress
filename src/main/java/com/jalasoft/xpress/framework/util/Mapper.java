@@ -10,10 +10,10 @@ import java.util.Map;
  */
 public class Mapper {
 
+    private static Map<String, Map> projectsValues = new HashMap<>();
+
     private Mapper() {
     }
-
-    private static Map<String, Map> projectsValues = new HashMap<>();
 
     public static void addProjects(String key, Map<ProjectSteps, Object> values) {
         projectsValues.put(key, values);
