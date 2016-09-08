@@ -68,8 +68,8 @@ public class TopHeader extends BasePage{
             Thread.sleep(timeToFindLogoutButton);
             final String xpath = "//span[contains(.,'Log out')]";
             userNameText.click();
-            WebElement LogOutOptionMenu = moduleSelectorCbo.findElement(By.xpath(xpath));
-            clickWebElement(LogOutOptionMenu);
+            WebElement logOutOptionMenu = moduleSelectorCbo.findElement(By.xpath(xpath));
+            clickWebElement(logOutOptionMenu);
 
         } catch (NoSuchElementException e) {
             LOGGER.warn(BUTTON_LOG_OUT_NOT_FOUND, e);
