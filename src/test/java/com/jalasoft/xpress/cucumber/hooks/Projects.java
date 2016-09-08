@@ -37,7 +37,7 @@ public class Projects {
         projectManagementPPSA.setTxtSearchProject(nameProject);
         projectManagementPPSA.clickOnDeleteCheckBox(nameProject);
         DeleteProjectAlert deleteAlert = projectManagementPPSA.clickOnDeleteProjects();
-        projectManagementPPSA = deleteAlert.clickDeleteBtn();
+        deleteAlert.clickDeleteBtn();
         dashboard.getTopHeader().clickOnExpressOptionMenu();
     }
 }

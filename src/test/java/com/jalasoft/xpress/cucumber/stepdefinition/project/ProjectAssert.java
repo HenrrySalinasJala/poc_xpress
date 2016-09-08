@@ -40,10 +40,7 @@ public class ProjectAssert {
     
     @Then("^I expect the user was added$")
     public void iExpectTheUserWasAdded() {
-        projectStepDef.getProjectUsersMap().forEach(user->{
-            assertTrue(projectStepDef.getEditProjectUsersForm().userIsAdded(user));
-        });
-        
+        projectStepDef.getProjectUsersMap().forEach(user-> assertTrue(projectStepDef.getEditProjectUsersForm().userIsAdded(user)));
         projectStepDef.getDashboard().getTopHeader().clickOnExpressOptionMenu();
     }
 }
