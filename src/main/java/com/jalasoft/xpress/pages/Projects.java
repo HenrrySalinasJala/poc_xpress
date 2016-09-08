@@ -1,6 +1,6 @@
 package com.jalasoft.xpress.pages;
 
-import com.jalasoft.xpress.pages.startedprojects.SetupDashboard;
+import com.jalasoft.xpress.pages.project.start.SetupDashboard;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;

@@ -1,4 +1,4 @@
-package com.jalasoft.xpress.pages.startedprojects;
+package com.jalasoft.xpress.pages.project.start;
 
 import com.jalasoft.xpress.pages.BasePage;
 import com.jalasoft.xpress.pages.Menu;

@@ -1,13 +1,13 @@
-package com.jalasoft.xpress.cucumber.stepdefinition.startedproject;
+package com.jalasoft.xpress.cucumber.stepdefinition.startproject;
 
 import com.jalasoft.xpress.cucumber.stepdefinition.login.LoginStepDef;
 import com.jalasoft.xpress.cucumber.stepdefinition.project.ProjectStepDef;
 import com.jalasoft.xpress.pages.Dashboard;
 import com.jalasoft.xpress.pages.Projects;
-import com.jalasoft.xpress.pages.startedprojects.Dimensions;
-import com.jalasoft.xpress.pages.startedprojects.FromExistingProject;
-import com.jalasoft.xpress.pages.startedprojects.FromScenarios;
-import com.jalasoft.xpress.pages.startedprojects.SetupDashboard;
+import com.jalasoft.xpress.pages.project.start.Dimensions;
+import com.jalasoft.xpress.pages.project.start.FromExistingProject;
+import com.jalasoft.xpress.pages.project.start.FromScenarios;
+import com.jalasoft.xpress.pages.project.start.SetupDashboard;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
