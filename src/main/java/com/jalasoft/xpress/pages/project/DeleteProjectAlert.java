@@ -1,6 +1,5 @@
 package com.jalasoft.xpress.pages.project;
 
-import com.jalasoft.xpress.framework.util.CommonMethods;
 import com.jalasoft.xpress.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

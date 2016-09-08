@@ -1,7 +1,6 @@
 package com.jalasoft.xpress.pages;
 
 import com.jalasoft.xpress.pages.project.ProjectSteps;
-import com.sun.javafx.css.converters.EnumConverter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +9,10 @@ import java.util.Map;
  * Created by Daniel Gonzales on 9/2/2016.
  */
 public class Mapper {
+
+    private Mapper() {
+    }
+
     private static Map<String, Map> projectsValues = new HashMap<>();
 
     public static void addProjects(String key, Map<ProjectSteps, Object> values) {

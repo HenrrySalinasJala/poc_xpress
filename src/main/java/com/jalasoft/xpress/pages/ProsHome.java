@@ -23,7 +23,6 @@ public class ProsHome extends BasePage {
         return new Login();
     }
     public boolean isLoginButtonPresent() {
-       // isElementPresent(signInLink);
         return isElementPresent(signInLink);
     }
 }
