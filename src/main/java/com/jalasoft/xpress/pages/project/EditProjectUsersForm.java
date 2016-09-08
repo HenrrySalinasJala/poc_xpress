@@ -7,17 +7,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import static com.jalasoft.xpress.framework.util.CommonMethods.clickWebElement;
 import static com.jalasoft.xpress.framework.util.CommonMethods.isElementPresent;
 import static com.jalasoft.xpress.framework.util.CommonMethods.setWebElement;
 import static com.jalasoft.xpress.framework.util.Constants.WAIT_TIME;
-import static com.jalasoft.xpress.pages.project.ProjectSteps.PROJECT_USER_NAME;
 import static java.util.concurrent.TimeUnit.*;
 
 /**
@@ -89,12 +85,10 @@ public class EditProjectUsersForm extends BasePage {
     }
     
     public void associateUser(List<String> userValues) {
-        userValues.forEach(user->{
-                    setTxtAvailableUser(user)
-                    .clickUserAvailableRow(user)
-                    .clickOnAddItemBtn()
-                    .clickOnAssociateAllBtn();
-        });
+        userValues.forEach(user-> setTxtAvailableUser(user)
+        .clickUserAvailableRow(user)
+        .clickOnAddItemBtn()
+        .clickOnAssociateAllBtn());
         
     }
 }

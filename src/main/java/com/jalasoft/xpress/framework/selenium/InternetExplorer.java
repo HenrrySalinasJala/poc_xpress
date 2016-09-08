@@ -3,7 +3,6 @@ package com.jalasoft.xpress.framework.selenium;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.SystemClock;
 
 /**
  * Created by henrry salinas on 9/6/2016.
