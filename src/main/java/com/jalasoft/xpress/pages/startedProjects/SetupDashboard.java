@@ -17,6 +17,8 @@ public class SetupDashboard extends BasePage {
 
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(Menu.class.getName());
 
+    private static final String THE_ELEMENT_WAS_NOT_FOUND = "The element was not found";
+
     @FindBy(xpath = "//a[contains(.,'Start from Existing')]")
     private WebElement startExistingProjectBtn;
 
@@ -34,8 +36,8 @@ public class SetupDashboard extends BasePage {
             Thread.sleep(3000);
         clickWebElement(startScratchProjectBtn);
         } catch (NoSuchElementException e) {
-            LOGGER.error("The element was not found",e);
-            throw new NoSuchElementException("The element was not found");
+            LOGGER.error(THE_ELEMENT_WAS_NOT_FOUND,e);
+            throw new NoSuchElementException(THE_ELEMENT_WAS_NOT_FOUND);
 
         } catch (InterruptedException e) {
             LOGGER.error("Interrupted !", e);
@@ -51,8 +53,8 @@ public class SetupDashboard extends BasePage {
             Thread.sleep(3000);
             clickWebElement(startExistingProjectBtn);
         } catch (NoSuchElementException e) {
-            LOGGER.error("The element was not found",e);
-            throw new NoSuchElementException("The element was not found");
+            LOGGER.error(THE_ELEMENT_WAS_NOT_FOUND,e);
+            throw new NoSuchElementException(THE_ELEMENT_WAS_NOT_FOUND);
 
         } catch (InterruptedException e) {
             LOGGER.error("Interrupted !", e);

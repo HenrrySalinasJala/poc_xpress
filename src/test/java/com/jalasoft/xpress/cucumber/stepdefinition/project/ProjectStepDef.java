@@ -1,23 +1,16 @@
 package com.jalasoft.xpress.cucumber.stepdefinition.project;
 
 import com.jalasoft.xpress.cucumber.stepdefinition.login.LoginStepDef;
-import com.jalasoft.xpress.framework.util.CommonMethods;
 import com.jalasoft.xpress.pages.AdminConsole;
 import com.jalasoft.xpress.pages.Dashboard;
-import com.jalasoft.xpress.pages.project.EditProjectForm;
-import com.jalasoft.xpress.pages.project.EditProjectUsersForm;
-import com.jalasoft.xpress.pages.project.ProjectForm;
-import com.jalasoft.xpress.pages.project.ProjectManagementPPSA;
-import com.jalasoft.xpress.pages.project.ProjectSteps;
-
+import com.jalasoft.xpress.pages.project.*;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import static com.jalasoft.xpress.pages.project.ProjectSteps.DISPLAY_NAME;
-import static com.jalasoft.xpress.pages.project.ProjectSteps.PROJECT_NAME;
-import static java.util.Calendar.*;
 
 /**
  * Created by henrry salinas on 9/1/2016.
@@ -63,12 +56,7 @@ public class ProjectStepDef {
         editProjectUsersForm.associateUser(userValues);
         
     }
-    
-    @And("^I added a user to the project$")
-    public void iAddedAUserToTheProject() {
-        
-    }
-    
+
     public EditProjectUsersForm getEditProjectUsersForm() {
         return editProjectUsersForm;
     }
