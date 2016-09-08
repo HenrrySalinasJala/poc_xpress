@@ -57,7 +57,7 @@ public class TopHeader extends BasePage{
 
     public ProsHome clickOnLogOut() {
         try {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
+            Thread.sleep(2000);
             final String xpath = "//span[contains(.,'Log out')]";
             userNameText.click();
             WebElement LogOutOptionMenu = moduleSelectorCbo.findElement(By.xpath(xpath));
@@ -70,8 +70,9 @@ public class TopHeader extends BasePage{
         catch (TimeoutException e) {
             LOGGER.warn("Time out exception Button log out not found", e);
 
-        }
-        finally {
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
         return new ProsHome();
