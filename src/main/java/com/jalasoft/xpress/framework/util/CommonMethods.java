@@ -1,7 +1,5 @@
 package com.jalasoft.xpress.framework.util;
 
-import com.jalasoft.xpress.pages.project.ProjectSteps;
-
 import org.apache.log4j.Logger;
 
 import org.openqa.selenium.WebDriverException;
@@ -9,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.Map;
 
 import static com.jalasoft.xpress.framework.selenium.DriverManager.getInstance;
 
@@ -25,8 +21,6 @@ public final class CommonMethods {
     private static final WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
-
-    private static final Environment PROPERTIES_INFO = Environment.getInstance();
 
     private CommonMethods() {
     }
@@ -48,7 +42,6 @@ public final class CommonMethods {
         } catch (WebDriverException e) {
             LOGGER.error("Web element not found", e);
             return false;
-
         }
     }
 
