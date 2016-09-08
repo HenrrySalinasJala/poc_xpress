@@ -21,7 +21,7 @@ public class FromScenarios extends BasePage{
 
     public FromScenarios checkScenario(String scenarioName) {
         WebElement selectScenarioCheck = driver.findElement(By.xpath("//tr[td//text()[contains(.,'" + scenarioName + "')]]/td/span"));
-        setCheckBox(selectScenarioCheck, true);
+        setCheckBox(selectScenarioCheck, false);
         return this;
     }
 
